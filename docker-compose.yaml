@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  webapp:
+    build: webapp
+    image: amigne/taskwwwarrior_webapp
+    restart: always
+    volumes:
+      - ./webapp/:/app
+      - django-static:/static
+    networks:
+      - backnet
+    ports:
+      - "8000:8000"
+
+  proxy:
+    build: proxy
+    image: amigne/taskwwwarrior_proxy
+    restart: always
+    depends_on:
+      - webapp
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - frontnet
+      - backnet
+    volumes:
+      - django-static:/static
+      - ./proxy/sslcerts:/sslcerts
+
+volumes:
+  django-static:
+
+networks:
+  frontnet:
+  backnet:

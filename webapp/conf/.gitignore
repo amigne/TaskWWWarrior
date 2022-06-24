@@ -1,0 +1,3 @@
+# The configuration file is specific to the installation and
+# must not be committed.
+gunicorn.py
