@@ -10,8 +10,6 @@ services:
       - django-static:/static
     networks:
       - backnet
-    ports:
-      - "8000:8000"
 
   proxy:
     build: proxy
