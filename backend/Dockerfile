@@ -8,12 +8,15 @@ RUN pip install --upgrade pip \
     && pip install --user -r /tmp/requirements.txt
 
 FROM python:3.10-slim
+
+EXPOSE 8000
+
+ENV PYTHONUNBUFFERED 1
+
 VOLUME /app
 WORKDIR /app
 
 VOLUME /static
-
-EXPOSE 8000
 
 COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH

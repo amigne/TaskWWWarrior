@@ -1,5 +1,6 @@
 FROM nginx:1.23-alpine
 
+VOLUME /frontend
 VOLUME /static
 VOLUME /sslcerts
 
